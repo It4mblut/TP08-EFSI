@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import Header from './components/Header.jsx';
 import Sidebar from './components/Sidebar.jsx';
 import StackNavigator from './navigation/StackNavigator.jsx';
@@ -11,8 +10,6 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <StatusBar style="light" backgroundColor="rgb(0, 0, 59)" />
-                
         <SafeAreaView style={styles.appContenedor}>
           <Header />
           <View style={styles.appBody}>
@@ -28,17 +25,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  appContenedor: {
-    flex: 1,
-    backgroundColor: '#1d2146',
-  },
-  appBody: {
-    flex: 1,
-    flexDirection: 'row',
-    marginTop: 60,
-  },
-  appMain: {
-    flex: 1,
-    marginLeft: 250,
-  },
+  appContenedor: { flex: 1, backgroundColor: '#1d2146' },
+  appBody: { flex: 1, flexDirection: 'row' },
+  appMain: { flex: 1, marginLeft: 250, marginTop: 60, paddingBottom: 20 },
 });
