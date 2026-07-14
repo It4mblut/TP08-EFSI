@@ -1,10 +1,26 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React, { StrictMode } from 'react';
+import { StyleSheet, View, StatusBar } from 'react-native';
+import { registerRootComponent } from 'expo';
+import App from './App.jsx';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+function Main() {
+  return (
+    <StrictMode>
+      
+      <View style={styles.body}>
+      
+        <StatusBar barStyle="light-content" backgroundColor="#1d2146" />
+        <App />
+      </View>
+    </StrictMode>
+  );
+}
+
+const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+    backgroundColor: '#1d2146',
+  },
+});
+
+registerRootComponent(Main);
