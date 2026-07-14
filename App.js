@@ -1,3 +1,4 @@
-import App from "./src/App";
-
-export default App;
+import { registerRootComponent } from 'expo';
+import React from 'react';
+import App from './src/App.jsx';
+registerRootComponent(App);
