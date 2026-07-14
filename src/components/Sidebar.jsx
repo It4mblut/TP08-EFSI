@@ -7,10 +7,10 @@ function Sidebar() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.sidebar}>      
+    <View style={styles.sidebar}>
       <TouchableOpacity 
         style={styles.sidebarPerfil} 
-        onPress={() => navigation.navigate('Perfil')} 
+        onPress={() => navigation.navigate('Perfil')}
       >
         <Image 
           source={{ uri: "https://fotografias-atreseries.atresmedia.com/clipping/cmsimages02/2018/06/06/54229044-BF06-42B7-A62E-AC06B1348713/70.jpg?crop=1574,885,x0,y42&width=480&height=270&optimize=high&format=webply" }} 
@@ -33,7 +33,7 @@ function Sidebar() {
         </TouchableOpacity>
       </View>
 
-      <nav style={styles.sidebarOpciones}>
+      <View style={styles.sidebarOpciones}>
         <TouchableOpacity style={styles.opcionBtn} onPress={() => navigation.navigate('Home')}>
           <Ionicons name="home-outline" size={20} color="white" />
           <Text style={styles.opcionText}>Home</Text>
@@ -54,7 +54,7 @@ function Sidebar() {
           <Ionicons name="notifications-outline" size={20} color="white" />
           <Text style={styles.opcionText}>Notificaciones</Text>
         </TouchableOpacity>
-      </nav>
+      </View>
     </View>
   );
 }
