@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Header from './components/Header.jsx';
 import Sidebar from './components/Sidebar.jsx';
-import StackNavigator from './navigation/StackNavigator.jsx';
+// import StackNavigator from './navigation/StackNavigator.jsx';
+import Feed from './components/Feed.jsx';
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
           <View style={styles.appBody}>
             <Sidebar />
             <View style={styles.appMain}>
-              <StackNavigator />
+
+<Feed />
             </View>
           </View>
         </SafeAreaView>
