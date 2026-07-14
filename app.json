@@ -1,21 +1,18 @@
 {
   "expo": {
-    "name": "TP8EFSI",
-    "slug": "tp8efsi",
+    "name": "TP8-EFSI",
+    "slug": "tp8-efsi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#00003b"
+      "backgroundColor": "#1d2146"
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "plugins": [
-      "expo-status-bar"
     ]
   }
 }

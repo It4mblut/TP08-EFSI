@@ -1,55 +1,36 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 import Header from './components/Header.jsx';
 import Sidebar from './components/Sidebar.jsx';
-import Feed from './components/Feed.jsx';
-import Usuario from './components/Usuario.jsx';
-import PostDetallado from './components/PostDetallado.jsx';
+import StackNavigator from './navigation/StackNavigator.jsx';
 
-function App() {
-  const [vistaActual, setVistaActual] = useState('feed');
-  const [postSeleccionado, setPostSeleccionado] = useState(null);
-
-  function abrirPost(post) {
-    setPostSeleccionado(post);
-    setVistaActual('post');
-  }
-
-  function volverAlFeed() {
-    setPostSeleccionado(null);
-    setVistaActual('feed');
-  }
-
+export default function App() {
   return (
-    <SafeAreaView style={styles.appContenedor}>
-      {/* Cabecera superior fija */}
-      <Header />
-      
-      <View style={styles.appBody}>
-        {/* Barra lateral / Menú */}
-        <Sidebar setVistaActual={setVistaActual} />
-        
-        {/* Contenido Principal */}
-        <View style={styles.appMain}>
-          {vistaActual === 'feed' && (
-            <Feed abrirPost={abrirPost} />
-          )}
-          {vistaActual === 'usuario' && (
-            <Usuario />
-          )}
-          {vistaActual === 'post' && postSeleccionado && (
-            <PostDetallado post={postSeleccionado} onVolver={volverAlFeed} />
-          )}
-        </View>
-      </View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <StatusBar style="light" backgroundColor="rgb(0, 0, 59)" />
+                
+        <SafeAreaView style={styles.appContenedor}>
+          <Header />
+          <View style={styles.appBody}>
+            <Sidebar />
+            <View style={styles.appMain}>
+              <StackNavigator />
+            </View>
+          </View>
+        </SafeAreaView>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   appContenedor: {
     flex: 1,
-    backgroundColor: 'rgb(0, 0, 59)',
+    backgroundColor: '#1d2146',
   },
   appBody: {
     flex: 1,
@@ -58,9 +39,6 @@ const styles = StyleSheet.create({
   },
   appMain: {
     flex: 1,
-    padding: 10, 
     marginLeft: 250,
   },
 });
-
-export default App;

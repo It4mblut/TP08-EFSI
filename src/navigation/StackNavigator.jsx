@@ -11,8 +11,8 @@ export default function StackNavigator() {
     <Stack.Navigator 
       initialRouteName="Home"
       screenOptions={{
-        headerShown: false, // Desactivamos el header nativo gris porque ya tenés tu propio <Header /> personalizado
-        animation: 'fade'   // Transición suave entre pantallas
+        headerShown: false, 
+        animation: 'fade'
       }}
     >
       <Stack.Screen name="Home" component={Feed} />

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-function PostDetallado({ post, onVolver }) {
-  const [likes, setLikes] = useState(Math.floor(Math.random() * 1000));
+function PostDetallado({ route, navigation }) {
+  const { post } = route.params;
+  
+  const [likes, setLikes] = useState(post.likes);
   const [likeado, setLikeado] = useState(false);
 
   function toggleLike() {
@@ -15,137 +17,112 @@ function PostDetallado({ post, onVolver }) {
     setLikeado(!likeado);
   }
 
-  const comentarios = [
-    { usuario: '@gatitosLindos', texto: 'hermoso!!' },
-    { usuario: '@amoGatitos', texto: 'que tierno' },
-    { usuario: '@gatoo67', texto: 'jaja, que torpe' },
-  ];
-
   return (
-    <ScrollView style={styles.postdetallado}>
-      {/* Botón Volver */}
-      <TouchableOpacity onClick={onVolver} style={styles.volverButton}>
-        <Text style={styles.volverButtonText}>← Volver</Text>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.volverBtn} onPress={() => navigation.goBack()}>
+        <Ionicons name="arrow-back-outline" size={24} color="white" />
+        <Text style={styles.volverText}>Volver al Feed</Text>
       </TouchableOpacity>
 
-      <View style={styles.postdetalladoContenido}>
-        {/* Imagen adaptable */}
-        <Image source={{ uri: post.url }} style={styles.postdetalladoImagen} />
-        
-        <View style={styles.postdetalladoInfo}>
-          <Text style={styles.postdetalladoUsuario}>@gatoo67</Text>
-          <Text style={styles.postdetalladoDesc}>Otro gatito haciendo cosas de gatos</Text>
-          <Text style={styles.postdetalladoFecha}>26 de mayo de 2025</Text>
-          
-          {/* Fila de Botones de Acción */}
-          <View style={styles.postdetalladoAcciones}>
-            <TouchableOpacity onPress={toggleLike} style={styles.accionButton}>
+      <View style={styles.cardDetalle}>
+        <View style={styles.headerUser}>
+          <Ionicons name="person-circle-outline" size={32} color="white" />
+          <Text style={styles.username}>{post.username}</Text>
+        </View>
+
+        <Image source={{ uri: post.url }} style={styles.imagenPost} />
+                
+        <View style={styles.interacciones}>
+          <View style={styles.filaIconos}>
+            <TouchableOpacity onPress={toggleLike} style={styles.accionBoton}>
               <Ionicons 
                 name={likeado ? "heart" : "heart-outline"} 
-                size={20} 
+                size={26} 
                 color={likeado ? "red" : "white"} 
               />
-              <Text style={styles.accionText}> {likes}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.accionButton}>
-              <Ionicons name="chatbubble-outline" size={20} color="white" />
-              <Text style={styles.accionText}> Comentar</Text>
+            <TouchableOpacity style={styles.accionBoton}>
+              <Ionicons name="chatbubble-outline" size={24} color="white" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.accionButton}>
-              <Ionicons name="paper-plane-outline" size={20} color="white" />
-              <Text style={styles.accionText}> Compartir</Text>
+            <TouchableOpacity style={styles.accionBoton}>
+              <Ionicons name="paper-plane-outline" size={24} color="white" />
             </TouchableOpacity>
           </View>
 
-          {/* Comentarios */}
-          <View style={styles.postdetalladoComentarios}>
-            {comentarios.map((comentario, i) => (
-              <Text key={i} style={styles.comentarioTexto}>
-                <Text style={styles.comentarioUsuario}>{comentario.usuario}</Text> {comentario.texto}
-              </Text>
-            ))}
-          </View>
+          <Text style={styles.likesText}>{likes} Me gusta</Text>
+          
+          <Text style={styles.descripcion}>
+            <Text style={{fontWeight: 'bold'}}>{post.username}</Text> {post.descripcion}
+          </Text>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  postdetallado: {
-    flex: 1,
-    backgroundColor: 'rgb(43, 43, 85)',
-    padding: 15,
+  container: { 
+    flex: 1, 
+    padding: 20 
   },
-  volverButton: {
-    alignSelf: 'flex-start',
-    paddingVertical: 10,
-    marginBottom: 10,
+  volverBtn: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    gap: 10, 
+    marginBottom: 20 
   },
-  volverButtonText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
+  volverText: { 
+    color: 'white', 
+    fontSize: 16 
   },
-  postdetalladoContenido: {
-    backgroundColor: 'rgb(79, 79, 146)',
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginBottom: 40,
+  cardDetalle: { 
+    backgroundColor: 'rgb(6, 0, 39)', 
+    borderRadius: 12, 
+    padding: 15 
   },
-  postdetalladoImagen: {
-    width: '100%',
-    height: 350,
-    resizeMode: 'cover',
-  },
-  postdetalladoInfo: {
-    padding: 15,
+  headerUser: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 10,
+    marginBottom: 12
   },
-  postdetalladoUsuario: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
+  username: { 
+    color: 'white', 
+    fontWeight: 'bold', 
+    fontSize: 16 
   },
-  postdetalladoDesc: {
-    color: 'white',
-    fontSize: 14,
+  imagenPost: { 
+    width: '100%', 
+    height: 350, 
+    borderRadius: 8, 
+    resizeMode: 'cover' 
   },
-  postdetalladoFecha: {
-    color: '#ccc',
-    fontSize: 12,
+  interacciones: { 
+    marginTop: 12, 
+    gap: 8 
   },
-  postdetalladoAcciones: {
+  filaIconos: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 15,
-    marginVertical: 10,
+    marginBottom: 4
   },
-  accionButton: {
-    flexDirection: 'row',
+  accionBoton: {
+    justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
   },
-  accionText: {
-    color: 'white',
-    fontSize: 14,
-  },
-  postdetalladoComentarios: {
-    marginTop: 10,
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 255, 255, 0.1)',
-    paddingTop: 10,
-  },
-  comentarioTexto: {
-    color: 'white',
-    fontSize: 14,
-    marginTop: 8,
-  },
-  comentarioUsuario: {
+  likesText: { 
+    color: 'white', 
     fontWeight: 'bold',
+    fontSize: 14
   },
+  descripcion: { 
+    color: 'white',
+    fontSize: 14,
+    lineHeight: 18
+  }
 });
 
 export default PostDetallado;
