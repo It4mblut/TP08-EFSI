@@ -1,0 +1,51 @@
+.postdetallado {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgb(43, 43, 85);
+}
+
+.postdetallado-imagen {
+  width: 500px;
+  height: 600px;
+  object-fit: cover;
+}
+
+.postdetallado-contenido {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background-color: rgb(79, 79, 146);
+}
+
+.postdetallado-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postdetallado-usuario {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.postdetallado-acciones button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.postdetallado-comentarios p {
+  margin-top: 8px;
+}
+
+.postdetallado > button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  width: fit-content;
+}
