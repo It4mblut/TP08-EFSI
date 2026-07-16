@@ -1,21 +1,24 @@
 {
   "expo": {
-    "name": "TP8-EFSI",
-    "slug": "tp8-efsi",
+    "name": "TP08-EFSI",
+    "slug": "TP08-EFSI",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1d2146"
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "plugins": [
-      "expo-status-bar"
-    ]
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

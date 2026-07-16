@@ -1,97 +1,117 @@
-import React from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons'; 
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-function Header() {
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+export default function Header() {
+
   return (
-    <View style={styles.header}>
-      <View style={styles.headerLogo}>
-        <Text style={styles.logoText}>Instagram</Text>
-      </View>
-      <View style={styles.headerSearch}>
-        <TextInput 
-          placeholder="Buscar" 
-          placeholderTextColor="gray" 
-          style={styles.searchInput}
+
+    <View style={styles.container}>
+
+      <Text style={styles.logo}>
+        Instagram
+      </Text>
+
+      <View style={styles.search}>
+
+        <Ionicons
+          name="search-outline"
+          size={18}
+          color="#bbb"
         />
+
+        <TextInput
+          placeholder="Buscar"
+          placeholderTextColor="#bbb"
+          style={styles.input}
+        />
+
       </View>
-      <View style={styles.headerIcons}>
-        <TouchableOpacity style={styles.iconButton}>
-          <Ionicons name="settings-outline" size={22} color="white" />
+
+      <View style={styles.icons}>
+
+        <TouchableOpacity>
+
+          <Ionicons
+            name="camera-outline"
+            size={24}
+            color="white"
+          />
+
         </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.iconButton}>
-          <Ionicons name="camera-outline" size={22} color="white" />
+
+        <TouchableOpacity>
+
+          <Ionicons
+            name="paper-plane-outline"
+            size={24}
+            color="white"
+          />
+
         </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.iconButton}>
-          <Ionicons name="paper-plane-outline" size={22} color="white" />
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={[styles.iconButton, styles.headerNewpost]}>
-          <Text style={styles.newPostText}>+ New Post</Text>
-        </TouchableOpacity>
+
       </View>
+
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
+
+  container: {
     height: 60,
-    backgroundColor: 'rgb(0, 0, 59)',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+
+    paddingHorizontal: 15,
+
+    backgroundColor: "rgb(0,0,59)",
+
     borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    zIndex: 100,
+    borderBottomColor: "#222",
   },
-  headerLogo: {
-    justifyContent: 'center',
+
+  logo: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 24,
   },
-  logoText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  headerSearch: {
+
+  search: {
+
     flex: 1,
-    marginHorizontal: 10,
-  },
-  searchInput: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    color: 'white',
-    paddingVertical: 5,
+
+    marginHorizontal: 15,
+
+    backgroundColor: "#1c1c4b",
+
+    borderRadius: 10,
+
+    flexDirection: "row",
+    alignItems: "center",
+
     paddingHorizontal: 10,
-    borderRadius: 8,
-    fontSize: 14,
+
+    height: 40,
   },
-  headerIcons: {
-    flexDirection: 'row',
-    alignItems: 'center',
+
+  input: {
+    flex: 1,
+    color: "white",
+    marginLeft: 8,
+  },
+
+  icons: {
+    flexDirection: "row",
     gap: 15,
   },
-  iconButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerNewpost: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  newPostText: {
-    color: 'white',
-    fontSize: 14,
-  },
-});
 
-export default Header;
+});

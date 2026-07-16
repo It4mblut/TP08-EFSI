@@ -1,47 +1,26 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Feed from '../components/Feed';
-import Usuario from '../components/Usuario';
-import PostDetallado from '../components/PostDetallado';
-
-console.log("Feed:", Feed);
-console.log("Usuario:", Usuario);
-console.log("Detalle:", PostDetallado);
+import HomeScreen from "../screens/HomeScreen";
+import Usuario from "../components/Usuario";
+import PostDetallado from "../components/PostDetallado";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-
   return (
-
     <Stack.Navigator
-
-      initialRouteName="Feed"
-
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         contentStyle: {
-          backgroundColor: 'rgb(0,0,59)',
+          backgroundColor: "rgb(0,0,59)",
         },
       }}
-
     >
-
       <Stack.Screen
-  name="Feed"
-  component={() => (
-    <View
-      style={{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
-      }}
-    >
-      <Text>Hola</Text>
-    </View>
-  )}
-/>
+        name="Home"
+        component={HomeScreen}
+      />
 
       <Stack.Screen
         name="Detalle"
@@ -52,9 +31,6 @@ export default function StackNavigator() {
         name="Perfil"
         component={Usuario}
       />
-
     </Stack.Navigator>
-
   );
-
 }

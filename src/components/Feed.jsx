@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import {
-  StyleSheet,
-  View,
- FlatList,
   ActivityIndicator,
+  FlatList,
   Image,
+  StyleSheet,
   Text,
-} from 'react-native';
+  View,
+} from "react-native";
 
-import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import PostCard from "./PostCard";
 
-import PostCard from './PostCard';
-
-function Feed() {
+export default function Feed() {
   const navigation = useNavigation();
 
   const [posts, setPosts] = useState([]);
@@ -23,60 +23,40 @@ function Feed() {
     {
       id: "1",
       usuario: "@gatitosLindos",
-      foto: "https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg"
+      foto: "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
     },
     {
       id: "2",
       usuario: "@amoGatitos",
-      foto: "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop"
+      foto: "https://cdn2.thecatapi.com/images/182.jpg",
     },
     {
       id: "3",
-      usuario: "@gatoo67",
-      foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCNBLmnNWfkgI83S1NuVF2k6dMjISlhRVMKQ&s"
+      usuario: "@gato67",
+      foto: "https://cdn2.thecatapi.com/images/2en.jpg",
     },
     {
       id: "4",
-      usuario: "@gatitos_",
-      foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5bFJhvKYCa7KA85tr7HmB5ua-PHqBnU5KkQ&s"
+      usuario: "@michi",
+      foto: "https://cdn2.thecatapi.com/images/38g.jpg",
     },
     {
       id: "5",
-      usuario: "@xXmichisXx",
-      foto: "https://www.clarin.com/2024/07/04/uteodLeuh_2000x1500__1.jpg"
+      usuario: "@gatito",
+      foto: "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
     },
-    {
-      id: "6",
-      usuario: "@gat0z_",
-      foto: "https://cdn2.thecatapi.com/images/182.jpg"
-    },
-    {
-      id: "7",
-      usuario: "@C4t",
-      foto: "https://cdn2.thecatapi.com/images/2en.jpg"
-    },
-    {
-      id: "8",
-      usuario: "@CDN",
-      foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZe-5VjXmag6NrQhcAzS-JbcnOzUx_jguQw&s"
-    },
-    {
-      id: "9",
-      usuario: "@gat0_o",
-      foto: "https://cdn2.thecatapi.com/images/38g.jpg"
-    }
   ];
 
   useEffect(() => {
     axios
-      .get("https://api.thecatapi.com/v1/images/search?limit=21")
-      .then((respuesta) => {
-        const datos = respuesta.data.map((post, index) => ({
-          id: post.id,
-          url: post.url,
+      .get("https://api.thecatapi.com/v1/images/search?limit=20")
+      .then((res) => {
+        const datos = res.data.map((item, index) => ({
+          id: item.id,
+          url: item.url,
           username: `@gatito${index + 1}`,
-          descripcion: "Otro gatito haciendo cosas de gatos",
-          likes: Math.floor(Math.random() * 1000),
+          descripcion: "Otro gatito haciendo cosas de gatos.",
+          likes: Math.floor(Math.random() * 900 + 100),
         }));
 
         setPosts(datos);
@@ -97,29 +77,27 @@ function Feed() {
     <FlatList
       data={posts}
       keyExtractor={(item) => item.id}
-      numColumns={3}
-      columnWrapperStyle={styles.row}
-      contentContainerStyle={styles.feed}
-      ListHeaderComponent={() => (
+      contentContainerStyle={{ paddingBottom: 90 }}
+      ListHeaderComponent={
         <FlatList
           horizontal
           data={historias}
           keyExtractor={(item) => item.id}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.feedHistorias}
+          contentContainerStyle={styles.historias}
           renderItem={({ item }) => (
             <View style={styles.historia}>
               <Image
                 source={{ uri: item.foto }}
-                style={styles.historiaImg}
+                style={styles.fotoHistoria}
               />
-              <Text style={styles.historiaText}>
+              <Text style={styles.usuarioHistoria}>
                 {item.usuario}
               </Text>
             </View>
           )}
         />
-      )}
+      }
       renderItem={({ item }) => (
         <PostCard
           post={item}
@@ -139,38 +117,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  feed: {
-    padding: 20,
-  },
-
-  row: {
-    justifyContent: "space-between",
-    marginBottom: 10,
-  },
-
-  feedHistorias: {
-    paddingBottom: 20,
-    gap: 20,
+  historias: {
+    paddingVertical: 15,
+    paddingHorizontal: 10,
   },
 
   historia: {
     alignItems: "center",
-    marginRight: 20,
+    marginRight: 18,
   },
 
-  historiaImg: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+  fotoHistoria: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     borderWidth: 3,
-    borderColor: "purple",
-    marginBottom: 5,
+    borderColor: "#ff00aa",
   },
 
-  historiaText: {
+  usuarioHistoria: {
     color: "white",
-    fontSize: 12,
+    fontSize: 11,
+    marginTop: 6,
   },
 });
-
-export default Feed;

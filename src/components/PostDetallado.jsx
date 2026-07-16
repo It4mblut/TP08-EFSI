@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { useState } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-function PostDetallado({ route, navigation }) {
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+export default function PostDetallado({ route, navigation }) {
   const { post } = route.params;
-  
+
   const [likes, setLikes] = useState(post.likes);
   const [likeado, setLikeado] = useState(false);
 
@@ -14,115 +22,151 @@ function PostDetallado({ route, navigation }) {
     } else {
       setLikes(likes + 1);
     }
+
     setLikeado(!likeado);
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.volverBtn} onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back-outline" size={24} color="white" />
-        <Text style={styles.volverText}>Volver al Feed</Text>
+    <ScrollView style={styles.container}>
+
+      <TouchableOpacity
+        style={styles.back}
+        onPress={() => navigation.goBack()}
+      >
+        <Ionicons
+          name="arrow-back"
+          size={28}
+          color="white"
+        />
+
+        <Text style={styles.backText}>
+          Volver
+        </Text>
       </TouchableOpacity>
 
-      <View style={styles.cardDetalle}>
-        <View style={styles.headerUser}>
-          <Ionicons name="person-circle-outline" size={32} color="white" />
-          <Text style={styles.username}>{post.username}</Text>
-        </View>
+      <View style={styles.card}>
 
-        <Image source={{ uri: post.url }} style={styles.imagenPost} />
-                
-        <View style={styles.interacciones}>
-          <View style={styles.filaIconos}>
-            <TouchableOpacity onPress={toggleLike} style={styles.accionBoton}>
-              <Ionicons 
-                name={likeado ? "heart" : "heart-outline"} 
-                size={26} 
-                color={likeado ? "red" : "white"} 
-              />
-            </TouchableOpacity>
+        <View style={styles.header}>
+          <Ionicons
+            name="person-circle"
+            size={36}
+            color="white"
+          />
 
-            <TouchableOpacity style={styles.accionBoton}>
-              <Ionicons name="chatbubble-outline" size={24} color="white" />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.accionBoton}>
-              <Ionicons name="paper-plane-outline" size={24} color="white" />
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.likesText}>{likes} Me gusta</Text>
-          
-          <Text style={styles.descripcion}>
-            <Text style={{fontWeight: 'bold'}}>{post.username}</Text> {post.descripcion}
+          <Text style={styles.username}>
+            {post.username}
           </Text>
         </View>
+
+        <Image
+          source={{ uri: post.url }}
+          style={styles.image}
+        />
+
+        <View style={styles.actions}>
+
+          <TouchableOpacity onPress={toggleLike}>
+            <Ionicons
+              name={likeado ? "heart" : "heart-outline"}
+              size={30}
+              color={likeado ? "red" : "white"}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Ionicons
+              name="chatbubble-outline"
+              size={28}
+              color="white"
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Ionicons
+              name="paper-plane-outline"
+              size={28}
+              color="white"
+            />
+          </TouchableOpacity>
+
+        </View>
+
+        <Text style={styles.likes}>
+          {likes} Me gusta
+        </Text>
+
+        <Text style={styles.description}>
+          <Text style={{ fontWeight: "bold" }}>
+            {post.username}
+          </Text>{" "}
+          {post.descripcion}
+        </Text>
+
       </View>
-    </View>
+
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    padding: 20 
-  },
-  volverBtn: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    gap: 10, 
-    marginBottom: 20 
-  },
-  volverText: { 
-    color: 'white', 
-    fontSize: 16 
-  },
-  cardDetalle: { 
-    backgroundColor: 'rgb(6, 0, 39)', 
-    borderRadius: 12, 
-    padding: 15 
-  },
-  headerUser: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: 12
-  },
-  username: { 
-    color: 'white', 
-    fontWeight: 'bold', 
-    fontSize: 16 
-  },
-  imagenPost: { 
-    width: '100%', 
-    height: 350, 
-    borderRadius: 8, 
-    resizeMode: 'cover' 
-  },
-  interacciones: { 
-    marginTop: 12, 
-    gap: 8 
-  },
-  filaIconos: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 15,
-    marginBottom: 4
-  },
-  accionBoton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  likesText: { 
-    color: 'white', 
-    fontWeight: 'bold',
-    fontSize: 14
-  },
-  descripcion: { 
-    color: 'white',
-    fontSize: 14,
-    lineHeight: 18
-  }
-});
 
-export default PostDetallado;
+  container: {
+    flex: 1,
+    backgroundColor: "rgb(0,0,59)",
+    padding: 15,
+  },
+
+  back: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 15,
+    gap: 10,
+  },
+
+  backText: {
+    color: "white",
+    fontSize: 16,
+  },
+
+  card: {
+    backgroundColor: "#151535",
+    borderRadius: 14,
+    overflow: "hidden",
+  },
+
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    padding: 12,
+  },
+
+  username: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+
+  image: {
+    width: "100%",
+    height: 380,
+  },
+
+  actions: {
+    flexDirection: "row",
+    gap: 18,
+    padding: 12,
+  },
+
+  likes: {
+    color: "white",
+    fontWeight: "bold",
+    paddingHorizontal: 12,
+  },
+
+  description: {
+    color: "white",
+    padding: 12,
+  },
+
+});
