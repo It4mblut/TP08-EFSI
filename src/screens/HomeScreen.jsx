@@ -3,20 +3,21 @@ import { StyleSheet, View } from "react-native";
 import Header from "../components/Header";
 import Feed from "../components/Feed";
 
-export default function HomeScreen() {
+function HomeScreen() {
+
   return (
     <View style={styles.container}>
 
       <Header />
 
-      <View style={styles.feed}>
+      <View style={styles.feedContainer}>
         <Feed />
       </View>
-
 
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
 
@@ -31,3 +32,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default HomeScreen;

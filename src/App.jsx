@@ -1,36 +1,48 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { View } from "react-native";
-
+import { View, StyleSheet } from "react-native";
+import { SafeAreaProvider,SafeAreaView} from "react-native-safe-area-context";
 import StackNavigator from "./navigation/StackNavigator";
 import BottomBar from "./components/BottomBar";
 
 
-export default function App(){
+export default function App() {
 
-return(
+  return (
+    <SafeAreaProvider>
 
-<SafeAreaProvider>
+      <NavigationContainer>
 
-<NavigationContainer>
+        <SafeAreaView style={styles.safe}>
 
-<StatusBar style="light"/>
+          <StatusBar style="light" />
 
+          <View style={styles.container}>
 
-<View style={{flex:1}}>
+            <StackNavigator />
 
-<StackNavigator/>
+            <BottomBar />
 
-<BottomBar/>
+          </View>
 
-</View>
+        </SafeAreaView>
 
+      </NavigationContainer>
 
-</NavigationContainer>
-
-</SafeAreaProvider>
-
-)
-
+    </SafeAreaProvider>
+  );
 }
+
+const styles = StyleSheet.create({
+
+  safe: {
+    flex: 1,
+    backgroundColor: "rgb(0,0,59)",
+  },
+
+  container: {
+    flex: 1,
+  },
+
+});
