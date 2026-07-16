@@ -23,27 +23,27 @@ export default function Feed() {
     {
       id: "1",
       usuario: "@gatitosLindos",
-      foto: "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
+      foto: "https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg",
     },
     {
       id: "2",
       usuario: "@amoGatitos",
-      foto: "https://cdn2.thecatapi.com/images/182.jpg",
+      foto: "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyZmlsfGVufDB8fDB8fHww",
     },
     {
       id: "3",
-      usuario: "@gato67",
-      foto: "https://cdn2.thecatapi.com/images/2en.jpg",
+      usuario: "@gatoo67",
+      foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCNBLmnNWfkgI83S1NuVF2k6dMjISlhRVMKQ&s",
     },
     {
       id: "4",
-      usuario: "@michi",
-      foto: "https://cdn2.thecatapi.com/images/38g.jpg",
+      usuario: "@gatitos_",
+      foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5bFJhvKYCa7KA85tr7HmB5ua-PHqBnU5KkQ&s",
     },
     {
       id: "5",
-      usuario: "@gatito",
-      foto: "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
+      usuario: "@xXmichisXx",
+      foto: "https://www.clarin.com/2024/07/04/uteodLeuh_2000x1500__1.jpg",
     },
   ];
 
