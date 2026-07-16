@@ -9,20 +9,20 @@ import {
 export default function Usuario() {
 
   const usuario = {
-    nombre: "Usuario Demo",
-    username: "@usuario",
-    bio: "Amante de los gatitos",
-    seguidores: 1254,
-    seguidos: 321,
-    publicaciones: 21,
-    foto: "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg",
+    nombre: "Juan López",
+    username: "@juancito.loPz",
+    bio: "Solo alguien que ama a los gatos",
+    seguidores: 1300,
+    seguidos: 430,
+    publicaciones: 24,
+    foto: "https://fotografias-atreseries.atresmedia.com/clipping/cmsimages02/2018/06/06/54229044-BF06-42B7-A62E-AC06B1348713/70.jpg?crop=1574,885,x0,y42&width=480&height=270&optimize=high&format=webply",
   };
 
   const publicaciones = Array.from(
-    { length: 21 },
+    { length: 24 },
     (_, i) => ({
       id: i.toString(),
-      url: `https://cdn2.thecatapi.com/images/${182 + i}.jpg`,
+      url: `https://api.thecatapi.com/v1/images/search?limit=1&page=${182 + i}`,
     })
   );
 
