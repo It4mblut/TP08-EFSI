@@ -3,22 +3,34 @@
     "name": "TP08-EFSI",
     "slug": "TP08-EFSI",
     "version": "1.0.0",
+
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+
+    "icon": "./assets/SplashIg.png",
+
+    "userInterfaceStyle": "dark",
+
+    "splash": {
+      "image": "./assets/SplashIg.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#00003B"
+    },
+
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+  "adaptiveIcon": {
+    "backgroundColor": "#00003B",
+    "foregroundImage": "./assets/SplashIg.png"
+  }
+}
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
     }
   }
-}
+
+
