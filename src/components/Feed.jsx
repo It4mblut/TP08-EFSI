@@ -88,30 +88,40 @@ export default function Feed() {
 
   return (
     <FlatList
-      data={posts}
+  style={{ flex: 1 }}
+  data={posts}
+  keyExtractor={(item) => item.id}
+  nestedScrollEnabled={true}
+  contentContainerStyle={{ paddingBottom: 90 }}
+
+
+ListHeaderComponent={
+  <View>
+
+    <FlatList
+      horizontal
+      data={historias}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={{ paddingBottom: 90 }}
+      showsHorizontalScrollIndicator={false}
+      nestedScrollEnabled={true}
+      contentContainerStyle={styles.historias}
+      renderItem={({ item }) => (
 
-     ListHeaderComponent={
-  <View style={styles.historias}>
+        <View style={styles.historia}>
 
-    {historias.map((item) => (
-      <View
-        key={item.id}
-        style={styles.historia}
-      >
+          <Image
+            source={{ uri: item.foto }}
+            style={styles.fotoHistoria}
+          />
 
-        <Image
-          source={{ uri: item.foto }}
-          style={styles.fotoHistoria}
-        />
+          <Text style={styles.usuarioHistoria}>
+            {item.usuario}
+          </Text>
 
-        <Text style={styles.usuarioHistoria}>
-          {item.usuario}
-        </Text>
+        </View>
 
-      </View>
-    ))}
+      )}
+    />
 
   </View>
 }
@@ -137,16 +147,15 @@ const styles = StyleSheet.create({
   },
 
 historias: {
-  flexDirection: "row",
   paddingVertical: 15,
   paddingHorizontal: 10,
 },
 
-  historia: {
-    alignItems: "center",
-    marginRight: 18,
-  },
-
+historia: {
+  alignItems: "center",
+  marginRight: 18,
+  width: 75,
+},
   fotoHistoria: {
     width: 70,
     height: 70,

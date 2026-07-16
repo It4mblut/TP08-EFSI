@@ -23,11 +23,6 @@ const comentarios = [
     usuario: "@michi_fan",
     texto: "Necesito uno así en mi casa jajaja"
   },
-  {
-    id: "3",
-    usuario: "@catlover",
-    texto: "Ese michi tiene cara de sueño"
-  },
 ];
   const [likes, setLikes] = useState(post.likes);
   const [likeado, setLikeado] = useState(false);
