@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { View, StyleSheet } from "react-native";
 import { SafeAreaProvider,SafeAreaView} from "react-native-safe-area-context";
 import StackNavigator from "./navigation/StackNavigator";
