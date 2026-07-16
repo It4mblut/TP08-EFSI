@@ -1,13 +1,8 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import {  FlatList,  Image,  StyleSheet,  Text,  View,} from "react-native";
 
+  import axios from "axios";
+import { useEffect, useState } from "react";
 export default function Usuario() {
-
   const usuario = {
     nombre: "Juan López",
     username: "@juancito.loPz",
@@ -18,13 +13,21 @@ export default function Usuario() {
     foto: "https://fotografias-atreseries.atresmedia.com/clipping/cmsimages02/2018/06/06/54229044-BF06-42B7-A62E-AC06B1348713/70.jpg?crop=1574,885,x0,y42&width=480&height=270&optimize=high&format=webply",
   };
 
-  const publicaciones = Array.from(
-    { length: 24 },
-    (_, i) => ({
-      id: i.toString(),
-      url: `https://api.thecatapi.com/v1/images/search?limit=1&page=${182 + i}`,
+  const [publicaciones, setPublicaciones] = useState([]);
+
+
+useEffect(() => {
+
+  axios
+    .get("https://api.thecatapi.com/v1/images/search?limit=24")
+    .then((respuesta)=>{
+
+      setPublicaciones(respuesta.data);
+
     })
-  );
+    .catch(console.log);
+
+}, []);
 
   return (
     <View style={styles.container}>
@@ -81,22 +84,24 @@ export default function Usuario() {
       </Text>
 
       <FlatList
-        data={publicaciones}
-        keyExtractor={(item) => item.id}
-        numColumns={3}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingTop: 20,
-          paddingBottom: 90,
-        }}
-        renderItem={({ item }) => (
-          <Image
-            source={{ uri: item.url }}
-            style={styles.post}
-          />
-        )}
-      />
+  data={publicaciones}
+  keyExtractor={(item)=>item.id}
+  numColumns={3}
+  showsVerticalScrollIndicator={false}
+  contentContainerStyle={{
+    paddingTop:20,
+    paddingBottom:90,
+  }}
 
+  renderItem={({item})=>(
+
+    <Image
+      source={{uri:item.url}}
+      style={styles.post}
+    />
+
+  )}
+/>
     </View>
   );
 }

@@ -12,7 +12,23 @@ import {
 
 export default function PostDetallado({ route, navigation }) {
   const { post } = route.params;
-
+const comentarios = [
+  {
+    id: "1",
+    usuario: "@gatitosLindos",
+    texto: "Que hermoso gatito"
+  },
+  {
+    id: "2",
+    usuario: "@michi_fan",
+    texto: "Necesito uno así en mi casa jajaja"
+  },
+  {
+    id: "3",
+    usuario: "@catlover",
+    texto: "Ese michi tiene cara de sueño"
+  },
+];
   const [likes, setLikes] = useState(post.likes);
   const [likeado, setLikeado] = useState(false);
 
@@ -101,7 +117,38 @@ export default function PostDetallado({ route, navigation }) {
           </Text>{" "}
           {post.descripcion}
         </Text>
+        <View style={styles.comentariosContainer}>
 
+<Text style={styles.tituloComentarios}>
+  Comentarios
+</Text>
+
+
+{
+  comentarios.map((comentario)=>(
+
+    <View
+      key={comentario.id}
+      style={styles.comentario}
+    >
+
+      <Text style={styles.usuarioComentario}>
+        {comentario.usuario}
+      </Text>
+
+      <Text style={styles.textoComentario}>
+        {comentario.texto}
+      </Text>
+
+      <Text style={styles.fechaComentario}>
+        {comentario.fecha}
+      </Text>
+
+    </View>
+
+  ))
+}
+</View>
       </View>
 
     </ScrollView>
@@ -169,4 +216,44 @@ const styles = StyleSheet.create({
     padding: 12,
   },
 
+  comentariosContainer:{
+  padding:12,
+  marginTop:10,
+},
+
+
+tituloComentarios:{
+  color:"white",
+  fontSize:18,
+  fontWeight:"bold",
+  marginBottom:15,
+},
+
+
+comentario:{
+  marginBottom:15,
+  borderBottomWidth:1,
+  borderBottomColor:"#333",
+  paddingBottom:10,
+},
+
+
+usuarioComentario:{
+  color:"white",
+  fontWeight:"bold",
+  fontSize:14,
+},
+
+
+textoComentario:{
+  color:"#ddd",
+  marginTop:3,
+},
+
+
+fechaComentario:{
+  color:"#888",
+  fontSize:12,
+  marginTop:3,
+},
 });
