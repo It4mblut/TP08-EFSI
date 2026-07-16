@@ -91,26 +91,32 @@ export default function Feed() {
       data={posts}
       keyExtractor={(item) => item.id}
       contentContainerStyle={{ paddingBottom: 90 }}
-      ListHeaderComponent={
-        <FlatList
-          horizontal
-          data={historias}
-          keyExtractor={(item) => item.id}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.historias}
-          renderItem={({ item }) => (
-            <View style={styles.historia}>
-              <Image
-                source={{ uri: item.foto }}
-                style={styles.fotoHistoria}
-              />
-              <Text style={styles.usuarioHistoria}>
-                {item.usuario}
-              </Text>
-            </View>
-          )}
+
+     ListHeaderComponent={
+  <View style={styles.historias}>
+
+    {historias.map((item) => (
+      <View
+        key={item.id}
+        style={styles.historia}
+      >
+
+        <Image
+          source={{ uri: item.foto }}
+          style={styles.fotoHistoria}
         />
-      }
+
+        <Text style={styles.usuarioHistoria}>
+          {item.usuario}
+        </Text>
+
+      </View>
+    ))}
+
+  </View>
+}
+
+
       renderItem={({ item }) => (
         <PostCard
           post={item}
@@ -130,10 +136,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  historias: {
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-  },
+historias: {
+  flexDirection: "row",
+  paddingVertical: 15,
+  paddingHorizontal: 10,
+},
 
   historia: {
     alignItems: "center",

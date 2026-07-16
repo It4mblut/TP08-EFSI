@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 
 import Header from "../components/Header";
 import Feed from "../components/Feed";
+import BottomBar from "../components/BottomBar";
 
 function HomeScreen() {
 
@@ -13,6 +14,8 @@ function HomeScreen() {
       <View style={styles.feedContainer}>
         <Feed />
       </View>
+
+      <BottomBar />
 
     </View>
   );
@@ -26,11 +29,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(0,0,59)",
   },
 
-  feed: {
+  feedContainer: {
     flex: 1,
-    paddingBottom: 75,
+    paddingBottom: 70,
   },
 
 });
+
 
 export default HomeScreen;
