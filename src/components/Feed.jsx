@@ -38,6 +38,26 @@ export default function Feed() {
       usuario: "@xXmichisXx",
       foto: "https://www.clarin.com/2024/07/04/uteodLeuh_2000x1500__1.jpg",
     },
+{
+      id: "6",
+      usuario: "@gat0z_",
+      foto: "https://cdn2.thecatapi.com/images/182.jpg",
+    },
+    {
+      id: "7",
+      usuario: "@C4t",
+      foto: "https://cdn2.thecatapi.com/images/2en.jpg",
+    },
+    {
+      id: "8",
+      usuario: "@CDN",
+      foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZe-5VjXmag6NrQhcAzS-JbcnOzUx_jguQw&s",
+    },
+    {
+      id: "9",
+      usuario: "@gat0_o",
+      foto: "https://cdn2.thecatapi.com/images/38g.jpg",
+    }
   ];
 
   useEffect(() => {
