@@ -2,14 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import {ActivityIndicator,FlatList,Image,StyleSheet,Text,View,} from "react-native";
 
 import PostCard from "./PostCard";
 
@@ -54,7 +47,7 @@ export default function Feed() {
         const datos = res.data.map((item, index) => ({
           id: item.id,
           url: item.url,
-          username: `@gatito${index + 1}`,
+          username: `@amoGatitos`,
           descripcion: "Otro gatito haciendo cosas de gatos.",
           likes: Math.floor(Math.random() * 900 + 100),
         }));

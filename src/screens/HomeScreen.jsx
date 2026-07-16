@@ -2,7 +2,6 @@ import { StyleSheet, View } from "react-native";
 
 import Header from "../components/Header";
 import Feed from "../components/Feed";
-import BottomBar from "../components/BottomBar";
 
 export default function HomeScreen() {
   return (
@@ -14,7 +13,6 @@ export default function HomeScreen() {
         <Feed />
       </View>
 
-      <BottomBar />
 
     </View>
   );
